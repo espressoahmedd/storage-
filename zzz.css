@@ -1,0 +1,221 @@
+/* ==================== تصميم البحث والفلاتر النهائي ==================== */
+
+.search-filter-section {
+    padding: 1rem 2rem;
+    max-width: 1400px;
+    margin: 5rem auto 1rem;
+    direction: rtl;
+}
+
+/* شريط البحث - نفس الارتفاع السابق */
+.search-box-container {
+    margin-bottom: 1.5rem;
+}
+
+.search-box {
+    display: flex;
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    border-radius: 12px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.search-box:focus-within {
+    border-color: var(--bg-text);
+}
+
+#searchInput {
+    flex: 1;
+    padding: 1.2rem 1.5rem;
+    background: transparent;
+    border: none;
+    color: var(--bg-text);
+    font-family: 'Tajawal', sans-serif;
+    font-size: 1.1rem;
+    text-align: right;
+    outline: none;
+    direction: rtl;
+}
+
+#searchInput::placeholder {
+    color: var(--bg-text);
+    opacity: 0.7;
+}
+
+#searchBtn {
+    background: var(--bg-text);
+    color: var(--bg);
+    border: none;
+    padding: 0 1.8rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 1.2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#searchBtn:hover {
+    background: var(--color-accent);
+}
+
+/* الفلاتر - توزيع متساوي وبسيط */
+.filter-controls {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 1rem;
+}
+
+.filter-combo {
+    display: flex;
+    width: 100%;
+    max-width: 600px;
+    height: 56px;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    border-radius: 12px;
+    overflow: hidden;
+    background: rgba(255, 255, 255, 0.05);
+}
+
+/* العناصر الثلاثة متساوية */
+.filter-combo > * {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    border: none;
+    outline: none;
+    font-family: 'Tajawal', sans-serif;
+    font-size: 1.1rem;
+}
+
+/* فلتر الفترة */
+#periodSelect {
+    background: transparent;
+    color: var(--bg-text);
+    cursor: pointer;
+    text-align: center;
+    padding: 0 0.8rem;
+    border-left: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 0 10px 10px 0;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+}
+
+/* حاوية التاريخ */
+.date-input-container {
+    position: relative;
+    border-left: 1px solid rgba(255, 255, 255, 0.1);
+    border-right: 1px solid rgba(255, 255, 255, 0.1);
+    background: transparent;
+}
+
+#jumpToDate {
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    color: transparent;
+    cursor: pointer;
+    padding: 0 0.8rem;
+    border: none;
+    text-align: center;
+}
+
+.date-placeholder {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--bg-text);
+    opacity: 0.7;
+    pointer-events: none;
+    font-size: 1.1rem;
+    white-space: nowrap;
+    text-align: center;
+}
+
+/* زر الانتقال */
+#jumpToDateBtn {
+    background: var(--bg-text);
+    color: var(--bg);
+    cursor: pointer;
+    font-size: 1.2rem;
+    padding: 0;
+    border-radius: 10px 0 0 10px;
+    border-right: 1px solid rgba(255, 255, 255, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#jumpToDateBtn:hover {
+    background: var(--color-accent);
+}
+
+/* ظهور النص في حقل التاريخ */
+#jumpToDate:focus + .date-placeholder,
+#jumpToDate:valid + .date-placeholder {
+    opacity: 0;
+}
+
+#jumpToDate:focus,
+#jumpToDate:valid {
+    color: var(--bg-text);
+}
+
+/* للشاشات الصغيرة */
+@media only screen and (max-width: 768px) {
+    .search-filter-section {
+        padding: 1rem;
+        margin-top: 4rem;
+    }
+    
+    .search-box,
+    .filter-combo {
+        max-width: 100%;
+    }
+}
+
+/* ألوان حسب الثيم */
+.theme-night .search-box,
+.theme-night .filter-combo {
+    border-color: rgba(255, 158, 100, 0.3);
+}
+
+.theme-apple .search-box,
+.theme-apple .filter-combo {
+    border-color: rgba(192, 180, 158, 0.3);
+}
+
+.theme-space .search-box,
+.theme-space .filter-combo {
+    border-color: rgba(0, 191, 255, 0.3);
+}
+
+.theme-night #searchBtn,
+.theme-night #jumpToDateBtn {
+    background: #ff9e64;
+    color: #0d1b2a;
+}
+
+.theme-apple #searchBtn,
+.theme-apple #jumpToDateBtn {
+    background: #c0b49e;
+    color: #315426;
+}
+
+.theme-space #searchBtn,
+.theme-space #jumpToDateBtn {
+    background: #00bfff;
+    color: #000010;
+}

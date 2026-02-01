@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>برنامج التخزين</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="screen.css">
+    <link rel="stylesheet" href="zzz.css">
+    <link rel="stylesheet" href="theme.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+    <script>
+    (function(){
+        const html = document.documentElement;
+        let savedTheme = localStorage.getItem('theme');
+        const themes = ['night', 'apple', 'wine', 'coffee', 'space', 'water', 'wild'];
+        if (!savedTheme || !themes.includes(savedTheme)) {
+            savedTheme = 'apple';
+            localStorage.setItem('theme', savedTheme);
+        }
+        html.classList.add(`theme-${savedTheme}`);
+        html.style.visibility = 'visible';
+        window.currentTheme = savedTheme;
+    })();
+    </script>
+</head>
+<body>
+
+    <!-- شاشة التحميل -->
+    <div id="loading-screen" class="loading-screen">
+        <div class="loading-content">
+            <div class="loading-logo">
+                  <i class="fas fa-calendar-alt"></i>
+            </div>
+            <div class="loading-progress-container">
+                <div class="loading-progress-bar">
+                    <div class="loading-progress-fill"></div>
+                </div>
+                <div class="loading-progress-text">0%</div>
+            </div>
+            <div class="loading-message">جاري التحميل...</div>
+            <div class="loading-dots">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </div>
+
+    <!-- شريط التنقل العلوي -->
+    <header id="navsec">
+        <nav id="nav">
+            <div id="nav-btn">
+
+                  <button id="nextPeriod" class="nav-btn__item active">
+                    <i class="fas fa-chevron-right"></i>
+                    <span>التالية</span>
+                </button>
+                
+                <button id="prevPeriod" class="nav-btn__item">
+                    <i class="fas fa-chevron-left"></i>
+                    <span>السابقة</span>
+                </button>
+
+                <button id="currentPeriodBtn" class="nav-btn__item">
+                    <i class="fas fa-calendar-alt"></i>
+                    <span>الحالية</span>
+                </button>
+                
+                <button id="theme-toggle" class="nav-btn__item" aria-label="Toggle Theme">
+                    <i class="fas fa-moon"></i>
+                    <span>الثيم</span>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <!-- المحتوى الرئيسي -->
+    <main class="main-content">
+        
+<!-- قسم البحث والفلترة -->
+<div class="search-filter-section">
+    <div class="search-box-container">
+        <div class="search-box">
+            <input type="text" id="searchInput" placeholder="ابحث بالاسم أو النشارة...">
+            <button id="searchBtn">
+                <i class="fas fa-search"></i>
+            </button>
+        </div>
+    </div>
+    
+    <div class="filter-controls">
+    <div class="filter-combo">
+        <!-- سيلكت الفترة - الخيار الأول هو "الفترة" -->
+        <select id="periodSelect" class="filter-select period-select">
+            <option value="week">الفترة</option>
+            <option value="week">أسبوع</option>
+            <option value="two-weeks">أسبوعين</option>
+            <option value="month">شهر كامل</option>
+        </select>
+        
+        <!-- حقل التاريخ -->
+        <div class="date-input-container">
+            <input type="date" id="jumpToDate" class="date-input" required>
+            <span class="date-placeholder" id="datePlaceholder">انتقل لتاريخ</span>
+        </div>
+        
+        <!-- زر الانتقال -->
+        <button id="jumpToDateBtn">
+            <i class="fas fa-search"></i>
+        </button>
+    </div>
+</div>
+</div>
+
+        <!-- جدول البيانات الرئيسي -->
+        <div class="data-section">
+            <div class="table-container">
+                <div class="table-responsive">
+                    <table class="data-table" id="dataTable">
+                        <thead>
+                            <tr>
+                                <th width="11%">التاريخ</th>
+                                <th width="7%">اليوم</th>
+                                <th width="16%">العميل</th>
+                                <th width="14%">النشارة</th>
+                                <th width="9%">السعر</th>
+                                <th width="9%">الحساب</th>
+                                <th width="9%">واصل</th>
+                                <th width="11%">باقي عليا</th>
+                                <th width="11%">باقي عليه</th>
+                                <th width="3%">حفظ</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tableBody">
+                            <!-- سيتم ملء الجدول ديناميكياً -->
+                        </tbody>
+                        <tfoot>
+                            <tr class="table-summary-row">
+                                <td colspan="5"><strong>الإجماليات:</strong></td>
+                                <td class="numeric-cell"><strong id="tableAccountTotal">0</strong></td>
+                                <td class="numeric-cell"><strong id="tableReceivedTotal">0</strong></td>
+                                <td class="numeric-cell"><strong id="tableOwedToMeTotal">0</strong></td>
+                                <td class="numeric-cell"><strong id="tableIOweTotal">0</strong></td>
+                                <td></td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- ملخص الفترة -->
+        <div class="summary-section">
+            <div class="summary-header">
+                <i class="fas fa-chart-bar"></i>
+                <h3>ملخص الفترة</h3>
+            </div>
+            <div class="summary-grid">
+                <div class="summary-item">
+                    <div class="summary-label">الباقي عليا</div>
+                    <div class="summary-value" id="totalOwedToMe">0</div>
+                </div>
+                <div class="summary-item">
+                    <div class="summary-label">الباقي عليه</div>
+                    <div class="summary-value" id="totalIOwe">0</div>
+                </div>
+                <div class="summary-item">
+                    <div class="summary-label">مجموع الحساب</div>
+                    <div class="summary-value" id="totalAccount">0</div>
+                </div>
+                <div class="summary-item">
+                    <div class="summary-label">مجموع الواصل</div>
+                    <div class="summary-value" id="totalReceived">0</div>
+                </div>
+            </div>
+            <div class="period-info-card">
+                <span id="currentPeriodText">الأسبوع الحالي</span>
+                <span class="records-count">عدد السجلات: <strong id="recordsCount">0</strong></span>
+            </div>
+        </div>
+
+    </main>
+
+    <div id="global-toast" class="qc-toast"></div>
+
+    <!-- Firebase -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-database-compat.js"></script>
+  
+    <!-- ملفات النظام -->
+    <script src="theme.js"></script>
+    <script src="script.js"></script>
+    
+</body>
+</html>

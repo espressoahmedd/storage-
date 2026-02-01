@@ -1,0 +1,203 @@
+@supports not (--custom: value) {
+body {
+  background-color: #0d1b2a; color: white; }
+}
+
+html {
+  visibility: hidden;
+  transition: all 4s ease-in-out;
+}
+
+html.theme-night,
+html.theme-apple,
+html.theme-wine,
+html.theme-coffee,
+html.theme-space,
+html.theme-water,
+html.theme-wild {
+  visibility: visible;
+}
+
+body {
+  margin: 0;
+  overflow-x: hidden;
+}
+
+/* Navigation Colors */
+#nav-btn .nav-btn__item i,
+#nav-btn .nav-btn__item span {
+  color: var(--nav-btn-color) !important;
+  transition: color 3s ease !important;
+  will-change: color;
+}
+
+/* Canvas Backgrounds */
+canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 6s ease;
+}
+
+.theme-night {
+ background-color: #0d1b2a;
+}
+
+.theme-apple {
+  background-color: #315426;
+}
+
+.theme-wine {
+  background: #4a0033;
+}
+
+.theme-coffee {
+  background-color: #4b382a;
+}
+
+.theme-space {
+  background-color: #000010;
+}
+
+.theme-water {
+  background-color:  #26A69A;
+}
+
+.theme-wild {
+  background-color:  #4B0082;
+}
+
+.theme-night #night-canvas,
+.theme-apple #apple-canvas,
+.theme-wine #wine-canvas,
+.theme-coffee #coffee-canvas,
+.theme-space #space-canvas,
+.theme-water #water-canvas,
+.theme-wild #wild-canvas {
+  opacity: 1;
+}
+
+/* apple Theme Overlay */
+.theme-apple::after {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at center,
+    rgba(157,114,67,0.2) 0%,
+    rgba(157,114,67,0) 70%);
+  pointer-events: none;
+  z-index: -1;
+}
+
+/* ==================== THEME VARIABLES ==================== */
+/* night Theme */
+html.theme-night {
+  --section-bg: rgba(0,0,0,0);
+  --bg: #0d1b2a;
+  --bg-text: #ff9e64;
+  --bot-bg: rgba(65, 90, 119, 0.7);
+  --user-msg-bg: rgba(65, 90, 119, 0.9);
+  --user-msg-border: rgba(65, 90, 119, 0.9);
+  --user-msg-text: #ff9e64;
+  --user-msg-arrow-bg: rgba(65, 90, 119, 0.9);
+  --input-text-color: #ff9e64;
+  --input-placeholder-color: #ff9e64;
+  --input-icon-color: #ff9e64;
+  --bot-btn-bg: rgba(65, 90, 119, 0.7);
+  --bot-name: #ff9e64;
+  --bot-btn-border: rgba(65, 90, 119, 0.7);
+  --bot-btn-hover-bg: rgba(65, 90, 119, 0.1);
+  --bot-btn-before-bg: rgba(65, 90, 119, 0.7);
+  --bg-card: rgba(0,0,0,0.6);
+}
+
+/* apple Theme */
+html.theme-apple {
+  --section-bg: rgba(0,0,0,0);
+  --bg: #315426;
+  --bg-text:  #c0b49e;
+  --bot-bg: #c0b49e;
+  --user-msg-bg: #315426;
+  --user-msg-border: #315426;
+  --user-msg-text: #c0b49e;
+  --user-msg-arrow-bg: #315426;
+  --input-text-color: #c0b49e;
+  --input-placeholder-color: #315426;
+  --input-icon-color: #315426;
+  --bot-btn-bg: rgba(255, 255, 255, 0.1);
+  --bot-name:  #315426;
+  --bot-btn-border: #c0b49e;
+  --bot-btn-hover-bg: #c0b49e;
+  --bot-btn-before-bg: rgba(255, 255, 255, 0.7);
+  --bg-card: rgba(0,0,0,0.6);
+}
+
+html.theme-apple .typing-indicator .dot {
+  background: var(--bg);
+}
+
+/* wine Theme */
+html.theme-wine {
+  --section-bg: rgba(0,0,0,0);
+  --bg: #4a0033;
+  --bg-text: #c0b49e;
+  --input-text-color: #c0b49e;
+  --input-placeholder-color: #4a0033;
+  --input-icon-color: #4a0033;
+  --bg-card: rgba(0,0,0,0.6);
+}
+
+html.theme-wine .typing-indicator .dot {
+  background: var(--bg);
+}
+/* Coffee Theme */
+html.theme-coffee {
+  --section-bg: rgba(0,0,0,0);
+  --bg: #4b382a;
+  --bg-text: #fff3cc;
+  --input-text-color: #fff3cc;
+  --input-placeholder-color: #fff3cc;
+  --input-icon-color: #fff3cc;
+  --bg-card: rgba(0,0,0,0.6);
+}
+
+/* space Theme */
+html.theme-space {
+  --section-bg: rgba(0,0,0,0);
+  --bg:  #000010;
+  --bg-text:  rgba(0, 191, 255, 1);
+  --input-text-color: #ffffff; 
+  --input-placeholder-color: #90caf9; 
+  --input-icon-color: #4fc3f7; 
+  --bg-card: rgba(0,0,0,0.0);
+}
+
+/* water Theme */
+html.theme-water {
+  --section-bg: rgba(0,0,0,0);
+  --bg:  #26A69A;
+  --bg-text:  white;
+  --input-text-color: white;
+  --input-placeholder-color:white;
+  --input-icon-color: white;
+  --bg-card: rgba(0,0,0,0.6);
+}
+
+/* wild Theme */
+html.theme-wild {
+  --section-bg: rgba(0,0,0,0);
+  --bg:  #4B0082;
+  --bg-text: #ffd700;
+  --input-text-color: #4B0082;
+  --input-placeholder-color: #4B0082;
+  --input-icon-color: #4B0082;
+  --bg-card: rgba(0,0,0,0.6);
+}
